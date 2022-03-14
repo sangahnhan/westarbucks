@@ -6,14 +6,14 @@ class Menu(models.Model):
     class Meta:
         db_table="products_menu"
 class Categories(models.Model):
-    menu_id=models.ForeignKey('Menu',on_delete=models.CASCADE)
+    menu=models.ForeignKey('Menu',on_delete=models.CASCADE)
     name=models.CharField(max_length=45)
 
     class Meta:
         db_table="products_categories"
 
 class Drinks(models.Model):
-    categories_id=models.ForeignKey('Categories',on_delete=models.CASCADE)
+    categories=models.ForeignKey('Categories',on_delete=models.CASCADE)
     korean_name=models.CharField(max_length=45)
     english_name=models.CharField(max_length=45)
     description=models.TextField(max_length=200)
@@ -24,7 +24,7 @@ class Drinks(models.Model):
 
 class Images(models.Model):
     image_url=models.CharField(max_length=2000)
-    drinks_id=models.ForeignKey('Drinks',on_delete=models.CASCADE)
+    drinks=models.ForeignKey('Drinks',on_delete=models.CASCADE)
     class Meta:
         db_table="products_images"
         
@@ -47,7 +47,7 @@ class Nutritions(models.Model):
     sugars_g=models.DecimalField(max_digits=10,decimal_places=2)
     protein_g=models.DecimalField(max_digits=10,decimal_places=2)
     caffeine_mg=models.DecimalField(max_digits=10,decimal_places=2)
-    drinks_id=models.ForeignKey('Drinks', on_delete=models.CASCADE)
-    size_id=models.ForeignKey('Size', on_delete=models.CASCADE)
+    drinks=models.ForeignKey('Drinks', on_delete=models.CASCADE)
+    size=models.ForeignKey('Size', on_delete=models.CASCADE)
     class Meta:
         db_table="products_nutritions"
